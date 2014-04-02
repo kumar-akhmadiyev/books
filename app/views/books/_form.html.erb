@@ -1,0 +1,39 @@
+<%= form_for(@book) do |f| %>
+  <% if @book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+      <% @book.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <input type="text" name="book[title]" class="contacttextform" placeholder="Название книги"/>
+  </fieldset>
+  <fieldset>
+    <textarea name="book[description]" class="contacttextarea" onfocus="if (this.value == 'Описание книги') {this.value = '';}">Описание книги</textarea>
+  </fieldset>
+  <fieldset>
+    <select name="book[genre]">
+      <% @genres.each do |g|%>
+        <option value="<%= g.id %>"><%= g.title %></option>
+      <% end %>
+    </select>
+  </fieldset>
+
+  <fieldset>
+    <%= f.file_field :bookcover %>
+    <%= f.hidden_field :bookcover_cache %>
+  </fieldset>
+  <fieldset>
+    <%= f.file_field :bookfile %>
+    <%= f.hidden_field :bookfile_cache %>
+  </fieldset>
+  <fieldset>
+    <input name="commit" class="largesmoothrectange orangebutton" type="submit" value="Загрузить книгу"/>
+  </fieldset>
+<% end %>
