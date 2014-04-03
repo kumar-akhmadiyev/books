@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Body:</b>
+  <%= @quotation.body %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%= @quotation.author %>
+</p>
+
+
+<%= link_to 'Edit', edit_quotation_path(@quotation) %> |
+<%= link_to 'Back', quotations_path %>

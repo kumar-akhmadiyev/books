@@ -13,12 +13,15 @@
 			<div class="boxes-full">
 	            <div class="boxes-padding fullpadding">
 	                <div class="splitnone">
-	                	<a href="<%= root_path %>"><image src="../assets/book1.png" style="height: 110px; width:110px; margin: 0 0 0 15px; float:left;"/>
+	                	<a href="<%= root_path %>"><image src="<%= root_path%>assets/book1.png" style="height: 110px; width:110px; margin: 0 0 0 15px; float:left;"/>
 	                    </a>
 	                    <p id="logoname">
 		                    E-library
 	                    </p>
-	                    <a class="largesmoothrectange orangebutton" id="go_to_upload" href="<%= new_book_path%>">Загрузить книгу</a>
+	                    <div class="quotation">
+	                    	<p style="float:right"><%= quotation.body %></p>
+	                    	<p style="float:right"><%= quotation.author %></p>
+	                    </div>
 	                </div>
 	            </div>	            
 	            <span class="box-arrow"> </span>

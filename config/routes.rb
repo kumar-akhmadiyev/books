@@ -1,5 +1,11 @@
 Books::Application.routes.draw do
 
+  resources :quotations
+
+
+  resources :genres
+
+
   resources :books
 
 

@@ -1,0 +1,26 @@
+<%= form_for(@genre) do |f| %>
+  <% if @genre.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@genre.errors.count, "error") %> prohibited this genre from being saved:</h2>
+
+      <ul>
+      <% @genre.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <input type="text" name="genre[title]" class="contacttextform" placeholder="Название жанра" value="<%= @genre.title %>"/>
+  </fieldset>
+
+  <fieldset>
+    <%= f.file_field :genrecover %>
+    <%= f.hidden_field :genrecover_cache %>
+  </fieldset>
+
+  <fieldset>
+    <input name="commit" class="largesmoothrectange orangebutton" type="submit" value="Готово"/>
+  </fieldset>
+<% end %>

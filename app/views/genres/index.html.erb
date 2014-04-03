@@ -1,0 +1,45 @@
+<div class="boxes-full">
+
+    <div class="boxes-padding fullpadding">
+        
+        <!-- Start None Split Section -->
+        <div class="splitnone">
+        
+            <div id="portfolio-container">
+            
+                <!-- Start 4 column portfolio -->
+                <h1>Listing genres</h1>
+
+                <table>
+                  <tr>
+                    <th>Title</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+
+                <% @genres.each do |genre| %>
+                  <tr>
+                    <td><%= genre.title %></td>
+                    <td><%= link_to 'Show', genre %></td>
+                    <td><%= link_to 'Edit', edit_genre_path(genre) %></td>
+                    <td><%= link_to 'Destroy', genre, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+                <% end %>
+                </table>
+
+                <br />
+
+                <%= link_to 'New Genre', new_genre_path %>
+            
+            </div>
+        
+        </div>
+        <!-- End None Split Section -->
+
+    </div>
+
+    <span class="box-arrow"></span>
+
+</div>
+<!-- End Box -->

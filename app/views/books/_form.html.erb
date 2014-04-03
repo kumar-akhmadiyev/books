@@ -12,10 +12,10 @@
   <% end %>
 
   <fieldset>
-    <input type="text" name="book[title]" class="contacttextform" placeholder="Название книги"/>
+    <input type="text" name="book[title]" class="contacttextform" placeholder="Название книги" value="<%= @book.title %>"/>
   </fieldset>
   <fieldset>
-    <textarea name="book[description]" class="contacttextarea" onfocus="if (this.value == 'Описание книги') {this.value = '';}">Описание книги</textarea>
+    <textarea name="book[description]" class="contacttextarea" value="<%= @book.description %>" onfocus="if (this.value == 'Описание книги') {this.value = '';}">Описание книги</textarea>
   </fieldset>
   <fieldset>
     <select name="book[genre]">
