@@ -41,7 +41,7 @@ class GenresController < ApplicationController
   # POST /genres.json
   def create
     @genre = Genre.new
-    raise params[:genre]
+    
     @genre.title = params[:genre]['title']
     @genre.genrecover = GenrecoverUploader.new
     @genre.genrecover.store!(params[:genre]['genrecover'])
