@@ -74,7 +74,7 @@ production:
       hosts:
         - ds049237.mongolab.com:49237
       username: "heroku_app23655751"                
-      password: "defc28013712598cdb6f23655751"
+      password: "p4ob8g0aqd9v6m1mo6cqhebpd8"
       options:
   options:
 test:
