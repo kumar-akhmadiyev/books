@@ -23,7 +23,7 @@
 }
 
 /* background color */
-#logo a, button.commentbutton:{
+#logo a, button .commentbutton{
    -webkit-transition: background-color .3s ease-in;
    -moz-transition: background-color .3s ease-in;
    -o-transition: background-color .3s ease-in;

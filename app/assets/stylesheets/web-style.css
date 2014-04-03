@@ -1719,7 +1719,7 @@ div.tab_contents_active {
 
 #portfolio-filter ul li{
 	list-style-type:none;
-	float@left;
+	float:left;
 	display:inline-block;
 	font-family: 'HelveticaLTStdRoman',Arial, Helvetica, sans-serif;
 	font-size:10pt;
@@ -1809,8 +1809,8 @@ div.tab_contents_active {
 	max-width: 100%;
 	max-height: 206px;
 	vertical-align: middle;
-	width:auto%;
-	height: auto%;
+	width:auto;
+	height: auto;
 }
 
 .portfoliowrap .portfolioimage img a{
@@ -2284,7 +2284,7 @@ div.tab_contents_active {
 	margin-right:10px;
 }
 
-.commentbutton:hover{
+.commentbutton:hover {
 	padding:5px 10px;
 	font-family: 'BebasNeueRegular',Arial, Helvetica, sans-serif;
 	font-size:16pt;
