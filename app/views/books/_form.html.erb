@@ -18,10 +18,16 @@
     <textarea name="book[description]" class="contacttextarea" value="<%= @book.description %>" onfocus="if (this.value == 'Описание книги') {this.value = '';}">Описание книги</textarea>
   </fieldset>
   <fieldset>
-    <select name="book[genre]">
+    <select name="book[subgenre]">
+
       <% @genres.each do |g|%>
-        <option value="<%= g.id %>"><%= g.title %></option>
+        <optgroup label="<%= g.title %>">
+          <% g.subgenres.each do |s|%>
+            <option value="<%= s.id %>"><%= s.title %></option>
+          <% end %>
+        </optgroup>
       <% end %>
+
     </select>
   </fieldset>
 

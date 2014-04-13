@@ -3225,3 +3225,30 @@ textarea.contacttextarea{
     filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#f7c87d', EndColorStr='#da620b', GradientType=0);
 	color:white;
 }
+
+.rating_choose{
+	margin: 50px 0 0 0;
+	width:45%;
+}
+
+
+.rating_choose input[type="submit"]{
+	border:1px solid #b85208;
+    background: #ff9c00;
+    background: -moz-linear-gradient(top, #ff9c00, #da620b);
+    background: -webkit-gradient(linear,left top, left bottom, from(#ff9c00), to(#da620b));
+    filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#ff9c00', EndColorStr='#da620b', GradientType=0);
+	color:white;	
+}
+.rating_choose input[type="submit"]:hover{
+	border:1px solid #b85208;
+    background: #f7c87d;
+    background: -moz-linear-gradient(top, #f7c87d, #da620b);
+    background: -webkit-gradient(linear,left top, left bottom, from(#f7c87d), to(#da620b));
+    filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#f7c87d', EndColorStr='#da620b', GradientType=0);
+	color:white;
+}
+
+.book_rating b{
+	color: #F08233;
+}

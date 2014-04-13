@@ -6,6 +6,6 @@ class Genre
 
 	field :title, type: String, default: ""
 
-	has_many :books
+	has_many :subgenres
 
 end

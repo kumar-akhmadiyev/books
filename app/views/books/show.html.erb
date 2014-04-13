@@ -1,39 +1,30 @@
-
-<div class="boxes-full">
-
-    <div class="boxes-padding fullpadding">
-        
-        <!-- Start None Split Section -->
-        <div class="splitnone">
-        
-            <div id="portfolio-container">
-            
-            	<div class="bookimagewrap">
-            		<img src="<%= @book.bookcover.url %>" class="bookimage"/>
-            	</div>
-            	<div class="bookinfo">
-					  <p>
-					  	<h2><b>Название: </b><%= @book.title %></h2>
-					  </p>
-					  <p><h2><b>Описание:</b></h2>
-						<p>
-						  <%= @book.description %>
-						</p>
-					  </p>
-					  <br/>
-					  	<a class="largesmoothrectange orangebutton" id="downloadbutton" href="<%= @book.bookfile.url%>">Скачать (<small><%= (@book.bookfile.size/1024.0).round(2)%>MB</small>)</a>
-					</div>
-				</div>
-
-            </div>
-        
-        </div>
-        <!-- End None Split Section -->
-
-    </div>
-
-    <span class="box-arrow"></span>
-
+<div class="bookimagewrap">
+	<img src="<%= @book.bookcover.url %>" class="bookimage"/>
 </div>
-
-<%= link_to 'Back', root_path %>
+<div class="bookinfo">
+	  <p>
+	  	<h2><b>Название: </b><%= @book.title %></h2>
+	  </p>
+	  <p><h2><b>Описание:</b></h2>
+		<p>
+		  <%= @book.description %>
+		</p>
+	  </p>
+	  <br/>
+	  	<a class="largesmoothrectange orangebutton" id="downloadbutton" href="<%= @book.bookfile.url%>">Скачать (<small><%= (@book.bookfile.size/1024.0).round(2)%>MB</small>)</a>
+	   	<div class="rating_choose">
+	  	<%= form_tag("/rates", method: "post", style: "border:none") do %>
+	  		<input type="hidden" name="book" value="<%= @book.id %>"/>
+			<select name="points">
+		    	<option value="0">0</option>
+		    	<option value="1">1</option>
+		    	<option value="2">2</option>
+		    	<option value="3">3</option>
+		    	<option value="4">4</option>
+		    	<option value="5">5</option>
+			</select>
+			<input name="commit" class="largesmoothrectange orangebutton" type="submit" value="Оценить"/>
+		<% end %>
+		</div>
+		<p class="book_rating"> Средняя оценка пользователей - <b><%= @book.average_rating%></b></p>
+</div>			

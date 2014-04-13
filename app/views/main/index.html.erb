@@ -1,40 +1,17 @@
+<% @genres.each do |g|%>
+<div class="element graphic">
 
-<div class="boxes-full">
-
-    <div class="boxes-padding fullpadding">
-        
-        <!-- Start None Split Section -->
-        <div class="splitnone">
-        
-            <div id="portfolio-container">
-            
-                <!-- Start 4 column portfolio -->
-                <% @genres.each do |g|%>
-                <div class="element graphic">
-                
-                    <div class="portfoliowrap">
-                                        
-                        <div class="title"><%= g.title%><span class="titlearrow"></span></div>
-                        <div class="portfolioimage">
-                            <a href="<%= genre_path(g) %>   " rel="prettyPhoto" title="Lorem ipsum dolor sit amet">
-                                <img src="<%= g.genrecover.url%>" alt="Lorem ipsum dolor sit amet" />
-                            </a>
-                        </div>
+    <div class="portfoliowrap">
                         
-                    
-                    </div>
-                
-                </div>
-                <% end %>
-            
-            </div>
-        
+        <div class="title"><%= g.title%><span class="titlearrow"></span></div>
+        <div class="portfolioimage">
+            <a href="<%= genre_path(g) %>   " rel="prettyPhoto" title="Lorem ipsum dolor sit amet">
+                <img src="<%= g.genrecover.url%>" alt="Lorem ipsum dolor sit amet" />
+            </a>
         </div>
-        <!-- End None Split Section -->
-
+        
+    
     </div>
 
-    <span class="box-arrow"></span>
-
 </div>
-<!-- End Box -->
+<% end %>

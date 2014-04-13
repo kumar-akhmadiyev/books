@@ -14,7 +14,7 @@ class GenresController < ApplicationController
   # GET /genres/1.json
   def show
     @genre = Genre.find(params[:id])
-    @books = Book.all.where(genre_id: @genre.id)
+    @subgenres = Subgenre.all.where(genre_id: @genre.id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @genre }

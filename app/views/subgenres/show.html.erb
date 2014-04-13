@@ -1,0 +1,18 @@
+<% @books.each do |b|%>
+<div class="element graphic">
+
+    <div class="portfoliowrap">
+                        
+        <div class="title"><%= b.title%><span class="titlearrow"></span></div>
+        <div class="portfolioimage">
+            <a href="<%= book_path(b) %>   " rel="prettyPhoto" title="Lorem ipsum dolor sit amet">
+                <img src="<%= b.bookcover.url%>" alt="Lorem ipsum dolor sit amet" />
+            </a>
+        </div>
+        <div class="text"><%= b.short_description%><span class="textarrow"></span></div>
+        
+    
+    </div>
+
+</div>
+<% end %>

@@ -1,41 +1,17 @@
+<% @subgenres.each do |g|%>
+<div class="element graphic">
 
-<div class="boxes-full">
-
-    <div class="boxes-padding fullpadding">
-        
-        <!-- Start None Split Section -->
-        <div class="splitnone">
-        
-            <div id="portfolio-container">
-            
-                <!-- Start 4 column portfolio -->
-                <% @books.each do |b|%>
-                <div class="element graphic">
-                
-                    <div class="portfoliowrap">
-                                        
-                        <div class="title"><%= b.title%><span class="titlearrow"></span></div>
-                        <div class="portfolioimage">
-                            <a href="<%= book_path(b) %>   " rel="prettyPhoto" title="Lorem ipsum dolor sit amet">
-                                <img src="<%= b.bookcover.url%>" alt="Lorem ipsum dolor sit amet" />
-                            </a>
-                        </div>
-                        <div class="text"><%= b.short_description%><span class="textarrow"></span></div>
+    <div class="portfoliowrap">
                         
-                    
-                    </div>
-                
-                </div>
-                <% end %>
-            
-            </div>
-        
+        <div class="title"><%= g.title%><span class="titlearrow"></span></div>
+        <div class="portfolioimage">
+            <a href="<%= subgenre_path(g) %>   " rel="prettyPhoto" title="Lorem ipsum dolor sit amet">
+                <img src="<%= g.subgenre.url%>" alt="Lorem ipsum dolor sit amet" />
+            </a>
         </div>
-        <!-- End None Split Section -->
-
+        
+    
     </div>
 
-    <span class="box-arrow"></span>
-
 </div>
-<!-- End Box -->
+<% end %>

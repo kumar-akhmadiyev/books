@@ -1,47 +1,25 @@
-<div class="boxes-full">
+<h1>Listing quotations</h1>
 
-    <div class="boxes-padding fullpadding">
-        
-        <!-- Start None Split Section -->
-        <div class="splitnone">
-        
-            <div id="portfolio-container">
-            
-                <!-- Start 4 column portfolio -->
-               <h1>Listing quotations</h1>
+<table>
+  <tr>
+    <th>Body</th>
+    <th>Author</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
 
-                <table>
-                  <tr>
-                    <th>Body</th>
-                    <th>Author</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                  </tr>
+<% @quotations.each do |quotation| %>
+  <tr>
+    <td><%= quotation.body %></td>
+    <td><%= quotation.author %></td>
+    <td><%= link_to 'Show', quotation %></td>
+    <td><%= link_to 'Edit', edit_quotation_path(quotation) %></td>
+    <td><%= link_to 'Destroy', quotation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
 
-                <% @quotations.each do |quotation| %>
-                  <tr>
-                    <td><%= quotation.body %></td>
-                    <td><%= quotation.author %></td>
-                    <td><%= link_to 'Show', quotation %></td>
-                    <td><%= link_to 'Edit', edit_quotation_path(quotation) %></td>
-                    <td><%= link_to 'Destroy', quotation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  </tr>
-                <% end %>
-                </table>
+<br />
 
-                <br />
-
-                <%= link_to 'New Quotation', new_quotation_path %>
-            
-            </div>
-        
-        </div>
-        <!-- End None Split Section -->
-
-    </div>
-
-    <span class="box-arrow"></span>
-
-</div>
-<!-- End Box -->
+<%= link_to 'New Quotation', new_quotation_path %>

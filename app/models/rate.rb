@@ -8,5 +8,4 @@ class Rate
 
 	belongs_to :book
 
-
 end

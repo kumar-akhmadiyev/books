@@ -1,5 +1,11 @@
 Books::Application.routes.draw do
 
+  resources :rates
+
+
+  resources :subgenres
+
+
   resources :quotations
 
 

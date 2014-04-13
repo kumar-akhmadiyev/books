@@ -1,0 +1,34 @@
+<%= form_for(@subgenre) do |f| %>
+  <% if @subgenre.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subgenre.errors.count, "error") %> prohibited this subgenre from being saved:</h2>
+
+      <ul>
+      <% @subgenre.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <select name="subgenre[genre]">
+      <% @genres.each do |g|%>
+        <option value="<%= g.id %>"><%= g.title %></option>
+      <% end %>
+    </select>
+  </fieldset>
+
+  <fieldset>
+    <input type="text" name="subgenre[title]" class="contacttextform" placeholder="Название подраздела" value="<%= @subgenre.title %>"/>
+  </fieldset>
+
+  <fieldset>
+    <%= f.file_field :subgenre %>
+    <%= f.hidden_field :subgenre_cache %>
+  </fieldset>
+
+  <fieldset>
+    <input name="commit" class="largesmoothrectange orangebutton" type="submit" value="Готово"/>
+  </fieldset>
+<% end %>

@@ -26,6 +26,7 @@ class BooksController < ApplicationController
   def new
     @book = Book.new
     @genres = Genre.all
+    @subgenres = Subgenre.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,7 +46,7 @@ class BooksController < ApplicationController
     @book = Book.new
     @book.title = params[:book]['title']
     @book.description = params[:book]['description']
-    @book.genre = Genre.find(params[:book]['genre'])
+    @book.subgenre = Subgenre.find(params[:book]['subgenre'])
     @book.bookcover = BookcoverUploader.new
     @book.bookfile = BookfileUploader.new
     @book.bookfile.store!(params[:book]['bookfile'])

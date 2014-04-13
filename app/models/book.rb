@@ -11,12 +11,14 @@ class Book
 	field :views, type: Integer, default: 0
 
 	has_many :rates
-	belongs_to :genre
+	belongs_to :subgenre
 
-	def average_rate
+	def average_rating
 		sum = 0
-		self.rates.inject{|x| sum + x }
-		return sum / self.rates.count
+		self.rates.each do |r|
+			sum = sum + r.points
+		end
+		return sum / (self.rates.count*1.0)
 	end
 
 	def short_description
