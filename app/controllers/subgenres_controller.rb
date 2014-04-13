@@ -36,6 +36,7 @@ class SubgenresController < ApplicationController
 
   # GET /subgenres/1/edit
   def edit
+    @genres = Genre.all
     @subgenre = Subgenre.find(params[:id])
   end
 
