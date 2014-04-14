@@ -64,16 +64,17 @@ class SubgenresController < ApplicationController
   # PUT /subgenres/1
   # PUT /subgenres/1.json
   def update
+    #raise params.inspect
     @subgenre = Subgenre.find(params[:id])
-    if params[:subgenre]['title']     
+    if !params[:subgenre]['title'].nil?     
       @subgenre.title = params[:subgenre]['title']
     end
 
-    if params[:subgenre]['genre']
+    if !params[:subgenre]['genre'].nil?
       @subgenre.genre = params[:subgenre]['genre']
     end
 
-    if params[:subgenre]['subgenre']
+    if !params[:subgenre]['subgenre'].nil?
       @subgenre.subgenre = SubgenreUploader.new
       @subgenre.subgenre.store!(params[:subgenre]['subgenre'])
     end
