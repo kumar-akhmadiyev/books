@@ -64,11 +64,22 @@ class SubgenresController < ApplicationController
   # PUT /subgenres/1
   # PUT /subgenres/1.json
   def update
-    @subgenre = Subgenre.find(params[:id])
+    if params[:subgenre]['title'] != ""      
+      @subgenre.title = params[:subgenre]['title']
+    end
+
+    if params[:subgenre]['genre'] != ""
+      @subgenre.genre = params[:subgenre]['genre']
+    end
+
+    if params[:subgenre]['subgenre']
+      @subgenre.subgenre = SubgenreUploader.new
+      @subgenre.subgenre.store!(params[:subgenre]['subgenre'])
+    end
 
     respond_to do |format|
-      if @subgenre.update_attributes(params[:subgenre])
-        format.html { redirect_to @subgenre, notice: 'Subgenre was successfully updated.' }
+      if @subgenre.save
+        format.html { redirect_to subgenres_path, notice: 'Subgenre was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

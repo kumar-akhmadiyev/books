@@ -9,9 +9,13 @@ gem 'better_errors'
 gem 'binding_of_caller'
 
 gem 'mongoid', '~> 3.1'
+gem 'carrierwave'
+gem 'fog', '>= 1.0.0'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mongoid-pagination'
 gem 'will_paginate_mongoid'
+gem 'rmagick', '2.13.2'
+gem 'figaro'
 
 # Gems used only for assets and not required
 # in production environments by default.
