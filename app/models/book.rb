@@ -14,6 +14,9 @@ class Book
 	belongs_to :subgenre
 
 	def average_rating
+		if self.rates.count == 0
+			return 0
+		end
 		sum = 0
 		self.rates.each do |r|
 			sum = sum + r.points
