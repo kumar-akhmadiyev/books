@@ -37,6 +37,7 @@ class BooksController < ApplicationController
   # GET /books/1/edit
   def edit
     @book = Book.find(params[:id])
+    @genres = Genre.all
   end
 
   # POST /books
