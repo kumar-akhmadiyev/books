@@ -66,10 +66,25 @@ class BooksController < ApplicationController
   # PUT /books/1
   # PUT /books/1.json
   def update
-    @book = Book.find(params[:id])
-
+    if params[:book]['title']
+      @book.title = params[:book]['title']
+    end
+    if params[:book]['description']
+      @book.description = params[:book]['description']
+    end
+    if params[:book]['subgenre']
+      @book.subgenre = Subgenre.find(params[:book]['subgenre'])
+    end
+    if params[:book]['bookcover']
+      @book.bookcover = BookcoverUploader.new
+      @book.bookcover.store!(params[:book]['bookcover'])
+    end
+    if params[:book]['bookfile']
+      @book.bookfile = BookfileUploader.new
+      @book.bookfile.store!(params[:book]['bookfile'])
+    end
     respond_to do |format|
-      if @book.update_attributes(params[:book])
+      if @book.save
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
         format.json { head :no_content }
       else

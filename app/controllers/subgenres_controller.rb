@@ -64,11 +64,11 @@ class SubgenresController < ApplicationController
   # PUT /subgenres/1
   # PUT /subgenres/1.json
   def update
-    if params[:subgenre]['title'] != ""      
+    if params[:subgenre]['title']     
       @subgenre.title = params[:subgenre]['title']
     end
 
-    if params[:subgenre]['genre'] != ""
+    if params[:subgenre]['genre']
       @subgenre.genre = params[:subgenre]['genre']
     end
 
