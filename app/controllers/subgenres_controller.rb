@@ -64,6 +64,7 @@ class SubgenresController < ApplicationController
   # PUT /subgenres/1
   # PUT /subgenres/1.json
   def update
+    @subgenre = Subgenre.find(params[:id])
     if params[:subgenre]['title']     
       @subgenre.title = params[:subgenre]['title']
     end
