@@ -67,6 +67,7 @@ class BooksController < ApplicationController
   # PUT /books/1
   # PUT /books/1.json
   def update
+    @book = Book.find(params[:id])
     if params[:book]['title']
       @book.title = params[:book]['title']
     end
