@@ -71,7 +71,7 @@ class SubgenresController < ApplicationController
     end
 
     if !params[:subgenre]['genre'].nil?
-      @subgenre.genre = params[:subgenre]['genre']
+      @subgenre.genre = Genre.find(params[:subgenre]['genre'])
     end
 
     if !params[:subgenre]['subgenre'].nil?
