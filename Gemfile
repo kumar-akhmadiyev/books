@@ -16,6 +16,7 @@ gem 'mongoid-pagination'
 gem 'will_paginate_mongoid'
 gem 'rmagick', '2.13.2'
 gem 'figaro'
+gem 'nokogiri', '~> 1.6.1'
 
 # Gems used only for assets and not required
 # in production environments by default.

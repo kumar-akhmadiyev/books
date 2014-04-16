@@ -20,6 +20,8 @@ Books::Application.routes.draw do
       get 'upload'
     end
   end
+
+  match 'books/:id/read/(:page)' => 'books#read', :as => :read_book
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

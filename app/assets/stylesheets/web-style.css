@@ -3176,6 +3176,7 @@ textarea.contacttextarea{
 	max-width: 392px;
 	height: auto;
 	width:auto;
+	padding-bottom:20px;
 }
 
 .bookinfo{
@@ -3251,4 +3252,24 @@ textarea.contacttextarea{
 
 .book_rating b{
 	color: #F08233;
+}
+
+#bookpage{
+	margin:auto;
+	float:none;
+}
+
+.pagearrows{
+	width:100px;
+	margin:auto;
+	float:none;
+	padding-bottom: 20px;
+}
+
+.prevbut{
+	float:left;
+}
+
+.nextbut{
+	float:right;
 }

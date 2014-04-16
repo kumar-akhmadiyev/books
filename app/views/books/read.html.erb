@@ -1,0 +1,7 @@
+<div class="pagearrows">
+<a class="smallsmoothrectange greenbutton prevbut" href="<%= read_book_path(@book, :page=> @prev,:anchor => "bookpage")%>"><</a>
+<a class="smallsmoothrectange greenbutton nextbut" href="<%= read_book_path(@book, :page=> @next,:anchor => "bookpage")%>">></a>
+</div>
+<div class="split23" id="bookpage">
+	<%= simple_format(@text)%>
+</div>

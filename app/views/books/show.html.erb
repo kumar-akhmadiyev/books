@@ -1,5 +1,6 @@
 <div class="bookimagewrap">
-	<img src="<%= @book.bookcover.url %>" class="bookimage"/>
+	<img src="<%= @book.bookcover.url %>" class="bookimage"/><br/>
+	<a class="largesmoothrectange greenbutton" href="<%= read_book_path(@book, :anchor => "bookpage")%>">Читать книгу онлайн</a>
 </div>
 <div class="bookinfo">
 	  <p>
@@ -11,7 +12,7 @@
 		</p>
 	  </p>
 	  <br/>
-	  	<a class="largesmoothrectange orangebutton" id="downloadbutton" href="<%= @book.bookfile.url%>">Скачать (<small><%= (@book.bookfile.size/1024.0).round(2)%>MB</small>)</a>
+	  	<a class="largesmoothrectange orangebutton" id="downloadbutton" href="<%= @book.bookfile.url%>">Скачать (<small><%= (@book.bookfile.size/1024.0/1024.0).round(2)%>MB</small>)</a>
 	   	<div class="rating_choose">
 	  	<%= form_tag("/rates", method: "post", style: "border:none") do %>
 	  		<input type="hidden" name="book" value="<%= @book.id %>"/>

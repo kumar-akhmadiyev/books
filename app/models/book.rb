@@ -10,6 +10,7 @@ class Book
 	field :description, type: String, default: ""
 	field :views, type: Integer, default: 0
 
+	has_one :parsed_book
 	has_many :rates
 	belongs_to :subgenre
 

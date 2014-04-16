@@ -55,6 +55,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
+        parse_book @book
         format.html { redirect_to books_path, notice: 'Book was successfully created.' }
         format.json { render json: @book, status: :created, location: @book }
       else
@@ -67,6 +68,7 @@ class BooksController < ApplicationController
   # PUT /books/1
   # PUT /books/1.json
   def update
+    change_parsed_book = false
     @book = Book.find(params[:id])
     if params[:book]['title']
       @book.title = params[:book]['title']
@@ -84,9 +86,14 @@ class BooksController < ApplicationController
     if params[:book]['bookfile']
       @book.bookfile = BookfileUploader.new
       @book.bookfile.store!(params[:book]['bookfile'])
+      change_parsed_book = true
     end
     respond_to do |format|
       if @book.save
+        if (change_parsed_book)
+          @book.parsed_book.delete
+          parse_book @book
+        end
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
         format.json { head :no_content }
       else
@@ -105,6 +112,45 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to books_url }
       format.json { head :no_content }
+    end
+  end
+
+  def read
+    @book = Book.find(params[:id])
+    @page = 1
+    @prev = 1
+    if !params[:page].nil?
+        if params[:page].to_i > 0
+          @page = params[:page].to_i
+          @prev = @page - 1
+        end
+    end
+    if (@book.parsed_book.pages.count == 0)
+      parse_book @book
+    end
+    @next = [@page+1,@book.parsed_book.pages.count].min
+    if (@book.parsed_book.pages.count < @page)
+      @text = "Вы пытаетесь открыть несуществующую страницу"
+    else
+      @text = @book.parsed_book.pages.where(numb: @page).first.text
+    end
+  end
+
+  protected
+
+  def parse_book book
+    #book = Book.find(params[:id])
+    xmlbook = Nokogiri::XML(open(book.bookfile.url))
+    xmlbook.remove_namespaces!
+    text = xmlbook.xpath("//body")[0]
+    t = text.xpath("//section")
+    t.each do |s|
+      if s.keys.empty?
+        if (book.parsed_book.nil?)
+          book.parsed_book = ParsedBook.new
+        end
+        book.parsed_book.add_section(s)
+      end
     end
   end
 end
