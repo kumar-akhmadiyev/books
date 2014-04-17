@@ -46,6 +46,7 @@ class RatesController < ApplicationController
 
     respond_to do |format|
       if @rate.save
+        @rate.book.compute_rating
         format.html { redirect_to @rate.book, notice: 'Rate was successfully created.' }
         format.json { render json: @rate, status: :created, location: @rate }
       else

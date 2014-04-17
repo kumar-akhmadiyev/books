@@ -1,5 +1,8 @@
 Books::Application.routes.draw do
 
+  resources :authors
+
+
   resources :rates
 
 
@@ -22,6 +25,7 @@ Books::Application.routes.draw do
   end
 
   match 'books/:id/read/(:page)' => 'books#read', :as => :read_book
+  match 'search' => 'books#search', :as => :search_book
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

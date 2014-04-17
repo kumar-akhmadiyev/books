@@ -9,8 +9,8 @@ class ParsedBook
 		text = ""
 		title = section.xpath("title")[0]
 		if (!title.nil?)
-		text = "<b>" + section.xpath("title")[0].content + "</b>"
-		text += "\n"
+			text = "<b>" + section.xpath("title")[0].content + "</b>"
+			text += "\n"
 		end
 		section.xpath("p").each do |p|
 			tmp = text + p.content + "\n"
@@ -24,7 +24,6 @@ class ParsedBook
 				p.save!
 				number += 1
 				text = ""
-
 			end
 		end
 		if (text != "")

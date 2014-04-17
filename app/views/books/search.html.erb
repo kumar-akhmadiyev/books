@@ -1,0 +1,40 @@
+<div class="formwrapper" id="searchform">
+	<%= form_for search_book_path do |f|%>
+	<fieldset>
+	    <select name="author"> 
+	      <option selected disabled hidden value=''>Поиск по автору</option>
+	      <% @authors.each do |a| %>
+	        <option value="<%= a.id %>"><%= a.name%></option>
+	      <% end %>
+	    </select>
+	</fieldset>
+	<fieldset>
+		<input type="text" name="title" class="contacttextform" placeholder="Поиск по названию" value=""/>
+	</fieldset>
+	<fieldset style="font-size:18px;">
+		<input type="number" name="year_from" class="year_picker" placeholder="Не ранее" value=""/> &nbspгода
+		<input type="number" name="year_before" class="year_picker" placeholder="Не позже" value=""/> &nbspгода
+	</fieldset>
+	<fieldset>
+    	<input name="commit" class="largesmoothrectange orangebutton" type="submit" value="Поиск"/>
+  	</fieldset>
+  	<% end %>
+</div>
+<% @books.each do |b|%>
+<div class="element graphic">
+
+    <div class="portfoliowrap">
+                        
+        <div class="title"><%= b.title%><span class="titlearrow"></span></div>
+        <div class="portfolioimage">
+            <a href="<%= book_path(b) %>   " rel="prettyPhoto" title="Lorem ipsum dolor sit amet">
+                <img src="<%= b.bookcover.url%>" alt="Lorem ipsum dolor sit amet" />
+            </a>
+        </div>
+        <div class="text"><%= b.short_description%><span class="textarrow"></span></div>
+        
+    
+    </div>
+
+</div>
+<% end %>

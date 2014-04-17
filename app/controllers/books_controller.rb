@@ -10,10 +10,40 @@ class BooksController < ApplicationController
     end
   end
 
+  def search
+    #raise params.inspect
+    @books = Book.all
+    @authors = Author.all
+    if !params[:title].blank?      
+      words = params[:title].gsub(/\s+/m, ' ').strip.split(" ")
+      
+      words.each do |w|
+        #raise w
+        @books = @books.where(:title => /.*#{w}.*/)     
+      end
+    end
+    #raise @books.to_a.inspect
+    #raise @books.to_a.inspect
+    if !params[:author].blank?
+      @books = @books.where(author: params[:author])
+    end
+    #raise @books.to_a.inspect
+    if !params[:year_from].blank?
+      @books = @books.gte(year: params[:year_from].to_i)
+    end
+    #raise @books.to_a.inspect
+    if !params[:year_before].blank?
+      @books = @books.lte(year: params[:year_before].to_i)
+    end
+    @books = @books.order_by(:average_rating.desc)
+    #raise @books.to_a.inspect
+  end
+
   # GET /books/1
   # GET /books/1.json
   def show
     @book = Book.find(params[:id])
+    @book.plus_view
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +56,7 @@ class BooksController < ApplicationController
   def new
     @book = Book.new
     @genres = Genre.all
-    @subgenres = Subgenre.all
+    @authors = Author.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,14 +68,15 @@ class BooksController < ApplicationController
   def edit
     @book = Book.find(params[:id])
     @genres = Genre.all
+    @authors = Author.all
   end
 
   # POST /books
   # POST /books.json
   def create
-    #raise params.inspect
     @book = Book.new
     @book.title = params[:book]['title']
+    @book.author = Author.find(params[:book]['author'])
     @book.description = params[:book]['description']
     @book.subgenre = Subgenre.find(params[:book]['subgenre'])
     @book.bookcover = BookcoverUploader.new
@@ -70,13 +101,19 @@ class BooksController < ApplicationController
   def update
     change_parsed_book = false
     @book = Book.find(params[:id])
-    if params[:book]['title']
+    if !params[:book]['title'].blank?
       @book.title = params[:book]['title']
     end
-    if params[:book]['description']
+    if !params[:book]['year'].blank?
+      @book.year = params[:book]['year']
+    end
+    if !params[:book]['author'].blank?
+      @book.author = Author.find(params[:book]['author'])
+    end
+    if !params[:book]['description'].blank?
       @book.description = params[:book]['description']
     end
-    if params[:book]['subgenre']
+    if !params[:book]['subgenre'].blank?
       @book.subgenre = Subgenre.find(params[:book]['subgenre'])
     end
     if params[:book]['bookcover']
@@ -117,40 +154,39 @@ class BooksController < ApplicationController
 
   def read
     @book = Book.find(params[:id])
-    @page = 1
-    @prev = 1
+    @page = 1     # страница по умолчанию
+    @prev = 1     
     if !params[:page].nil?
         if params[:page].to_i > 0
           @page = params[:page].to_i
           @prev = @page - 1
         end
     end
-    if (@book.parsed_book.pages.count == 0)
-      parse_book @book
+    if (@book.parsed_book.pages.count == 0) # если книга не была распарсена
+      parse_book @book #  тогда начать парсинг
     end
     @next = [@page+1,@book.parsed_book.pages.count].min
     if (@book.parsed_book.pages.count < @page)
       @text = "Вы пытаетесь открыть несуществующую страницу"
     else
-      @text = @book.parsed_book.pages.where(numb: @page).first.text
+      @text = @book.parsed_book.pages.where(numb: @page).first.text # вывод страницы
     end
   end
 
   protected
 
   def parse_book book
-    #book = Book.find(params[:id])
-    xmlbook = Nokogiri::XML(open(book.bookfile.url))
-    xmlbook.remove_namespaces!
-    text = xmlbook.xpath("//body")[0]
-    t = text.xpath("//section")
-    t.each do |s|
-      if s.keys.empty?
-        if (book.parsed_book.nil?)
-          book.parsed_book = ParsedBook.new
+    xmlbook = Nokogiri::XML(open(book.bookfile.url)) # Мы создаем объект класса Nokogiri::XML::Document, в качестве входных данных передаем файл книги
+    xmlbook.remove_namespaces! # Удаляем namespaces - лишние проблемы
+    text = xmlbook.xpath("//body")[0] # Берем содержимое тэга body - основной части книги
+    t = text.xpath("//section") # t - массив из объектов класса Nokogiri::XML::Node, каждый из которых - часть книги
+    t.each do |s|     # Пробегаемся по каждой части отдельно
+      if s.keys.empty? # Проверка, не является ли секция не основным текстом(сноски, замечания и т.д.)
+        if (book.parsed_book.nil?) # Если объект класса parsed_book еще не создан для этой книги
+          book.parsed_book = ParsedBook.new # То создаем его
         end
-        book.parsed_book.add_section(s)
+        book.parsed_book.add_section(s) # Передаем в метод класса parsed_book часть книги
       end
     end
-  end
+  end  
 end

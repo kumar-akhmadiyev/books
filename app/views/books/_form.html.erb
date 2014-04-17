@@ -12,7 +12,18 @@
   <% end %>
 
   <fieldset>
+    <select name="book[author]"> 
+      <option selected disabled hidden value=''>Поиск по автору</option>
+      <% @authors.each do |a| %>
+        <option value="<%= a.id %>"><%= a.name%></option>
+      <% end %>
+    </select>
+  </fieldset>
+  <fieldset>
     <input type="text" name="book[title]" class="contacttextform" placeholder="Название книги" value="<%= @book.title %>"/>
+  </fieldset>
+  <fieldset>
+    <input type="number" name="book[year]" class="contacttextform" placeholder="Год выхода" value="<%= @book.year %>"/>
   </fieldset>
   <fieldset>
     <textarea name="book[description]" class="contacttextarea" value="<%= @book.description %>" onfocus="if (this.value == 'Описание книги') {this.value = '';}"><%= @book.description%></textarea>
@@ -32,10 +43,12 @@
   </fieldset>
 
   <fieldset>
+    <div class="file_label">Обложка</div> 
     <%= f.file_field :bookcover %>
     <%= f.hidden_field :bookcover_cache %>
   </fieldset>
   <fieldset>
+    <div class="file_label">Книга</div>
     <%= f.file_field :bookfile %>
     <%= f.hidden_field :bookfile_cache %>
   </fieldset>
