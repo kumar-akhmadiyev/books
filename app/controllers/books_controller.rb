@@ -1,9 +1,11 @@
 class BooksController < ApplicationController
   # GET /books
   # GET /books.json
+  load_and_authorize_resource
+  skip_authorize_resource :only => [:search,:show,:read,:parse_book]
+  # => load_and_authorize_resource
   def index
     @books = Book.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @books }
@@ -11,32 +13,26 @@ class BooksController < ApplicationController
   end
 
   def search
-    #raise params.inspect
+    @searched = params
     @books = Book.all
     @authors = Author.all
     if !params[:title].blank?      
       words = params[:title].gsub(/\s+/m, ' ').strip.split(" ")
       
       words.each do |w|
-        #raise w
         @books = @books.where(:title => /.*#{w}.*/)     
       end
     end
-    #raise @books.to_a.inspect
-    #raise @books.to_a.inspect
     if !params[:author].blank?
       @books = @books.where(author: params[:author])
     end
-    #raise @books.to_a.inspect
     if !params[:year_from].blank?
       @books = @books.gte(year: params[:year_from].to_i)
     end
-    #raise @books.to_a.inspect
     if !params[:year_before].blank?
       @books = @books.lte(year: params[:year_before].to_i)
     end
     @books = @books.order_by(:average_rating.desc)
-    #raise @books.to_a.inspect
   end
 
   # GET /books/1

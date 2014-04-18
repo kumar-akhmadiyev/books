@@ -13,9 +13,9 @@
 
   <fieldset>
     <select name="book[author]"> 
-      <option selected disabled hidden value=''>Поиск по автору</option>
+      <% if @book.author.blank?%><option selected disabled hidden value=''>Выберите автора</option> <% end %> 
       <% @authors.each do |a| %>
-        <option value="<%= a.id %>"><%= a.name%></option>
+        <option <% if @book.author.id == a.id %> selected <% end %>value="<%= a.id %>"><%= a.name%></option>
       <% end %>
     </select>
   </fieldset>
@@ -30,11 +30,11 @@
   </fieldset>
   <fieldset>
     <select name="book[subgenre]">
-
+      <% if @book.subgenre.blank?%><option selected disabled hidden value=''>Выберите подкатегорию</option> <% end %> 
       <% @genres.each do |g|%>
         <optgroup label="<%= g.title %>">
           <% g.subgenres.each do |s|%>
-            <option value="<%= s.id %>"><%= s.title %></option>
+            <option <% if @book.subgenre.id == s.id %> selected <% end %> value="<%= s.id %>"><%= s.title %></option>
           <% end %>
         </optgroup>
       <% end %>

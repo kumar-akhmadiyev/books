@@ -1,6 +1,8 @@
 class QuotationsController < ApplicationController
   # GET /quotations
   # GET /quotations.json
+  load_and_authorize_resource
+  #skip_authorize_resource :only => [:search,:show,:read,:parse_book]
   def index
     @quotations = Quotation.all
 

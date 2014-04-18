@@ -1,6 +1,8 @@
 class RatesController < ApplicationController
   # GET /rates
   # GET /rates.json
+  load_and_authorize_resource
+  skip_authorize_resource :only => :create
   def index
     @rates = Rate.all
 

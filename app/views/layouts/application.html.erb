@@ -41,14 +41,15 @@
 		</div>
 	</div>
 	<div id="footer">
-    <div id="footerbottom">
-        <div class="footerwrap">
-        
-            <!-- Start Copyright Div -->
-            <div id="copyright"> 2014, "IT University"
-        
-        </div>    
-    </div>
-</div>
+	    <div id="footerbottom">
+	        <div class="footerwrap">
+	        
+	            <!-- Start Copyright Div -->
+	            <div id="copyright"> 2014, "IT University" </div>    
+	            <% if current_user%>
+	            <a class="smallsmoothrectange redbutton" id="logout_button" style="float:right" href="<%= log_out_path %>">Выйти</a>
+	            <% end %>
+	    </div>
+	</div>
 </body>
 </html>

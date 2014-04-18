@@ -9,11 +9,11 @@
 	    </select>
 	</fieldset>
 	<fieldset>
-		<input type="text" name="title" class="contacttextform" placeholder="Поиск по названию" value=""/>
+		<input type="text" name="title" class="contacttextform" placeholder="Поиск по названию" value="<%= @searched[:title]%>"/>
 	</fieldset>
 	<fieldset style="font-size:18px;">
-		<input type="number" name="year_from" class="year_picker" placeholder="Не ранее" value=""/> &nbspгода
-		<input type="number" name="year_before" class="year_picker" placeholder="Не позже" value=""/> &nbspгода
+		<input type="number" name="year_from" class="year_picker" placeholder="Не ранее" value="<%= @searched[:year_from]%>"/> &nbspгода
+		<input type="number" name="year_before" class="year_picker" placeholder="Не позже" value="<%= @searched[:year_before]%>"/> &nbspгода
 	</fieldset>
 	<fieldset>
     	<input name="commit" class="largesmoothrectange orangebutton" type="submit" value="Поиск"/>

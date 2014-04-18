@@ -1,6 +1,8 @@
 class AuthorsController < ApplicationController
   # GET /authors
   # GET /authors.json
+  load_and_authorize_resource
+  #skip_authorize_resource :only => [:search,:show,:read,:parse_book]
   def index
     @authors = Author.all
 

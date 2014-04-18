@@ -1,6 +1,8 @@
 class GenresController < ApplicationController
   # GET /genres
   # GET /genres.json
+  load_and_authorize_resource
+  skip_authorize_resource :only => :show
   def index
     @genres = Genre.all
 

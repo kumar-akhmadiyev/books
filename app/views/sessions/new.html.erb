@@ -1,0 +1,17 @@
+<h1>Log in</h1>
+
+<div class="login_form">
+	<div class="formwrapper">
+		<%= form_tag sessions_path do%>
+			<fieldset>
+				<input type="text" name="email" class="contacttextform" placeholder="Логин" value=""/>
+			</fieldset>
+			<fieldset>
+				<input type="text" name="password" class="contacttextform" placeholder="Пароль" value=""/>
+			</fieldset>
+			<fieldset>
+		    	<input name="commit" class="largesmoothrectange greenbutton" type="submit" value="Войти"/>
+		    </fieldset>
+	  	<% end %>
+	</div>
+</div>

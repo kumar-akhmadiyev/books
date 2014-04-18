@@ -1,6 +1,8 @@
 class SubgenresController < ApplicationController
   # GET /subgenres
   # GET /subgenres.json
+  load_and_authorize_resource
+  skip_authorize_resource :only => :show
   def index
     @subgenres = Subgenre.all
 
@@ -14,7 +16,7 @@ class SubgenresController < ApplicationController
   # GET /subgenres/1.json
   def show
     @subgenre = Subgenre.find(params[:id])
-    @books = Book.where(subgenre_id: @subgenre.id)
+    @books = Book.where(subgenre_id: @subgenre.id).order_by(:average_rating.desc)
 
     respond_to do |format|
       format.html # show.html.erb

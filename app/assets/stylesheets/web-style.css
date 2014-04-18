@@ -3210,6 +3210,10 @@ textarea.contacttextarea{
 	border:none;
 }
 
+.formwrapper .largesmoothrectange{
+	padding:7px 10px;
+}
+
 .formwrapper input[type="submit"]{
 	border:1px solid #b85208;
     background: #ff9c00;
@@ -3292,4 +3296,31 @@ textarea.contacttextarea{
 	font-family: 'HelveticaLTStdRoman', Arial, Helvetica, sans-serif;
 	margin-bottom:3px;
 	width:50%;
+}
+.simple_search_form{
+	width:100%;
+	height: 70px;
+	float:none;
+}
+.simple_search_form .formwrapper{
+	width:60%;
+	margin:auto;
+}
+.simple_search_form input{
+	float:left;
+}
+
+.simple_search_form input[type="text"]{
+	width:400px;
+}
+
+.login_form .formwrapper{
+	margin:auto;
+}
+.administration_list a{
+	font-size: 20px;
+	text-decoration: none
+}
+#logout_button{
+	margin-top:5px;
 }

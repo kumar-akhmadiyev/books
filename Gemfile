@@ -5,21 +5,23 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'better_errors'
-gem 'binding_of_caller'
-
 gem 'mongoid', '~> 3.1'
 gem 'carrierwave'
 gem 'fog', '>= 1.0.0'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
-gem 'mongoid-pagination'
-gem 'will_paginate_mongoid'
 gem 'rmagick', '2.13.2'
 gem 'figaro'
 gem 'nokogiri', '~> 1.6.1'
+gem "bcrypt-ruby", :require => "bcrypt"
+gem "cancan"
 
 # Gems used only for assets and not required
 # in production environments by default.
+
+group :development do
+	gem 'better_errors'
+	gem 'binding_of_caller'
+end
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
